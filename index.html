@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CherryBite - Smart Canteen Food Waste Predictor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <a href="#home" class="logo">CherryBite</a>
+    <button id="menu-btn" class="menu-btn" aria-label="Toggle menu">&#9776;</button>
+    <nav id="nav-links" class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#add-record">Add Record</a>
+      <a href="#records">Records</a>
+      <a href="#forecast">Forecast</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <!-- HOME / HERO -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>Every Meal Matters</h1>
+      <p>Make smarter food decisions, reduce unnecessary waste, and build a more sustainable canteen.</p>
+      <a href="#add-record" class="btn">Get Started</a>
+      <a href="#about" class="btn btn-outline">Learn More</a>
+    </div>
+    <div class="hero-card">
+      <h3>Smart Canteen Food Waste Predictor</h3>
+      <p>Record prepared, sold and wasted food, view daily analysis, and get a preparation recommendation.</p>
+      <p class="tagline">Serve Smarter. Waste Less. Make Every Meal Count.</p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="section">
+    <h2>Dashboard</h2>
+    <p class="demo-note">DEMO MODE - SYNTHETIC SAMPLE DATA</p>
+    <div class="cards">
+      <div class="card"><span>Total Prepared</span><strong id="c-prepared">0</strong></div>
+      <div class="card"><span>Total Sold</span><strong id="c-sold">0</strong></div>
+      <div class="card warn"><span>Total Wasted</span><strong id="c-wasted">0</strong></div>
+      <div class="card warn"><span>Waste %</span><strong id="c-waste-pct">0%</strong></div>
+      <div class="card good"><span>Utilization %</span><strong id="c-util">0%</strong></div>
+      <div class="card warn"><span>Waste Cost</span><strong id="c-cost">Rs. 0</strong></div>
+    </div>
+  </section>
+
+  <!-- ADD RECORD -->
+  <section id="add-record" class="section alt">
+    <h2>Add Food Record</h2>
+    <form id="record-form" class="form-grid">
+      <label>Date
+        <input type="date" id="date" required>
+      </label>
+      <label>Food Item
+        <input type="text" id="item" list="item-list" placeholder="e.g. Vada Pav" required>
+        <datalist id="item-list"></datalist>
+      </label>
+      <label>Attendance (customers)
+        <input type="number" id="attendance" min="0" required>
+      </label>
+      <label>Prepared Quantity
+        <input type="number" id="prepared" min="0" required>
+      </label>
+      <label>Sold Quantity
+        <input type="number" id="sold" min="0" required>
+      </label>
+      <label>Confirmed Wasted Quantity
+        <input type="number" id="wasted" min="0" required>
+      </label>
+      <label>Preparation Cost per Portion (Rs.)
+        <input type="number" id="prep_cost" min="0" step="0.5" required>
+      </label>
+      <button type="submit" class="btn">Save Record</button>
+    </form>
+    <p id="form-message" class="message"></p>
+  </section>
+
+  <!-- RECORDS TABLE -->
+  <section id="records" class="section">
+    <h2>Food Records</h2>
+    <button id="reset-btn" class="btn small-btn" type="button">Reset Sample Data</button>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th><th>Item</th><th>Attendance</th><th>Prepared</th><th>Sold</th>
+            <th>Wasted</th><th>Waste %</th><th>Waste Cost</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="records-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FORECAST -->
+  <section id="forecast" class="section alt">
+    <h2>Demand Forecast</h2>
+    <form id="forecast-form" class="form-grid">
+      <label>Food Item
+        <select id="f-item"></select>
+      </label>
+      <label>Expected Attendance
+        <input type="number" id="f-attendance" min="0" value="400" required>
+      </label>
+      <label>Safety Buffer (%)
+        <input type="number" id="f-buffer" min="0" value="10" required>
+      </label>
+      <button type="submit" class="btn">Get Recommendation</button>
+    </form>
+    <div id="forecast-result" class="result" hidden></div>
+    <p class="small">This is a simple baseline method (average sales per customer x expected attendance + buffer),
+      not a trained machine-learning model.</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2>About the Project</h2>
+    <p><strong>Problem:</strong> Canteens often prepare food using estimates, which leads to avoidable food waste and financial loss.</p>
+    <p><strong>Solution:</strong> CherryBite records preparation, sales and confirmed waste, shows the analysis, and suggests how much to prepare next.</p>
+    <p><strong>Technology:</strong> HTML, CSS and JavaScript. Records are saved in your own browser (localStorage); there is no server or database in this version.</p>
+  </section>
+
+  <footer class="footer">
+    <p>CherryBite - Smart Canteen Food Waste Predictor | Academic demonstration prototype</p>
+    <p>Sanika D. Purnekar | Roll No: 39 | RBT25CS180</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
